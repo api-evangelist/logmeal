@@ -1,8 +1,8 @@
 aid: logmeal
 name: LogMeal
 description: >-
-  Food detection based on images. Semantic tagging including food group, dish
-  and ingredients recognition, as well as nutritional information analysis. 
+  Food detection based on images. Semantic tagging including food group, dish and
+  ingredients recognition, as well as nutritional information analysis.
 type: Index
 position: Consumer
 access: 3rd-Party
@@ -18,9 +18,8 @@ apis:
   - aid: logmeal:logmeal
     name: LogMeal
     description: >-
-      Food detection based on images. Semantic tagging including food group,
-      dish and ingredients recognition, as well as nutritional information
-      analysis. 
+      Food detection based on images. Semantic tagging including food group, dish
+      and ingredients recognition, as well as nutritional information analysis.
     humanURL: ' https://logmeal.com/api/'
     tags:
       - API
