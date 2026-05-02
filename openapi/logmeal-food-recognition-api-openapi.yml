@@ -1,0 +1,282 @@
+openapi: 3.1.0
+info:
+  title: LogMeal Food Recognition API
+  description: >-
+    The LogMeal API is a RESTful service that recognizes foods, drinks,
+    vegetables, fruits, and prepared dishes from images, returns ingredient
+    lists with quantities, computes nutritional information, and tracks user
+    intakes over time. Authentication is by user token in the Authorization
+    header. Images are submitted as multipart/form-data or as a base64-encoded
+    string in JSON.
+  version: '2.0'
+  contact:
+    name: LogMeal
+    url: https://logmeal.com/api/
+servers:
+  - url: https://api.logmeal.com
+    description: LogMeal production API
+security:
+  - bearerToken: []
+tags:
+  - name: Image Recognition
+    description: Detect food items in user-submitted images.
+  - name: Nutrition
+    description: Retrieve ingredients and nutritional information for confirmed intakes.
+  - name: History
+    description: Retrieve a user's logged food intakes over time.
+paths:
+  /v2/image/segmentation/complete:
+    post:
+      tags: [Image Recognition]
+      summary: Segment and recognize foods in an image
+      description: >-
+        Detects multiple food items in an image, recognizes each item, and logs
+        a user intake in a single request.
+      operationId: segmentationComplete
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required: [image]
+              properties:
+                image:
+                  type: string
+                  format: binary
+                  description: Image file containing one or more food items.
+                language:
+                  type: string
+                  description: ISO language code for returned labels.
+                  default: eng
+      responses:
+        '200':
+          description: Recognition results with detected food items.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SegmentationResult'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /v2/nutrition/recipe/ingredients:
+    post:
+      tags: [Nutrition]
+      summary: Retrieve ingredients for a confirmed intake
+      description: >-
+        Returns standardized ingredient lists and quantities for a confirmed
+        food intake.
+      operationId: recipeIngredients
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [imageId, confirmedClass]
+              properties:
+                imageId:
+                  type: integer
+                  description: Identifier returned by a previous recognition request.
+                confirmedClass:
+                  type: integer
+                  description: The class id confirmed by the user as the correct food.
+      responses:
+        '200':
+          description: Ingredient list for the confirmed intake.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IngredientsResult'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /v2/nutrition/recipe/nutritionalInfo:
+    post:
+      tags: [Nutrition]
+      summary: Retrieve nutritional information for a confirmed intake
+      description: >-
+        Extracts macro and micronutrient data, including 35+ nutritional
+        indicators such as energy, carbohydrates, protein, and fats.
+      operationId: recipeNutritionalInfo
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [imageId]
+              properties:
+                imageId:
+                  type: integer
+                  description: Identifier returned by a previous recognition request.
+                confirmedClass:
+                  type: integer
+                  description: The class id confirmed as the correct food.
+      responses:
+        '200':
+          description: Nutritional information for the intake.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NutritionalInfo'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /v2/history/getIntakesList:
+    get:
+      tags: [History]
+      summary: List user food intakes
+      description: >-
+        Returns a list of intakes logged for the authenticated user within the
+        specified time period.
+      operationId: getIntakesList
+      parameters:
+        - name: startDate
+          in: query
+          description: Start of the time window (ISO 8601 date).
+          schema:
+            type: string
+            format: date
+        - name: endDate
+          in: query
+          description: End of the time window (ISO 8601 date).
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: List of intakes.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IntakesList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  securitySchemes:
+    bearerToken:
+      type: http
+      scheme: bearer
+      description: User access token issued by LogMeal.
+  responses:
+    Unauthorized:
+      description: Missing or invalid access token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    SegmentationResult:
+      type: object
+      properties:
+        imageId:
+          type: integer
+        segmentation_results:
+          type: array
+          items:
+            type: object
+            properties:
+              recognition_results:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    name:
+                      type: string
+                    prob:
+                      type: number
+                      format: float
+              foodFamily:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    name:
+                      type: string
+                    prob:
+                      type: number
+                      format: float
+        foodType:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              name:
+                type: string
+              prob:
+                type: number
+                format: float
+    IngredientsResult:
+      type: object
+      properties:
+        foodName:
+          type: array
+          items:
+            type: string
+        ingredients:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              quantity:
+                type: number
+                format: float
+              unit:
+                type: string
+    NutritionalInfo:
+      type: object
+      properties:
+        nutritional_info_per_item:
+          type: array
+          items:
+            type: object
+        totalNutrients:
+          type: object
+          additionalProperties:
+            type: object
+            properties:
+              label:
+                type: string
+              quantity:
+                type: number
+              unit:
+                type: string
+        totalDaily:
+          type: object
+          additionalProperties:
+            type: object
+        calories:
+          type: number
+    IntakesList:
+      type: object
+      properties:
+        intakes:
+          type: array
+          items:
+            type: object
+            properties:
+              imageId:
+                type: integer
+              date:
+                type: string
+                format: date-time
+              foodName:
+                type: array
+                items:
+                  type: string
+              imageUrl:
+                type: string
+                format: uri
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        code:
+          type: integer

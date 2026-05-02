@@ -1,38 +1,55 @@
 # LogMeal (logmeal)
-Food detection based on images. Semantic tagging including food group, dish and ingredients recognition, as well as nutritional information analysis. 
+
+LogMeal provides a Food Recognition Image API that detects foods, drinks, vegetables, fruits and prepared dishes from images. The platform offers semantic tagging including food group, dish and ingredients recognition, as well as nutritional information analysis with 35+ nutritional indicators and user intake history tracking.
 
 **URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/logmeal/refs/heads/main/apis.yml)
 
 ## Scope
 
-- **Type:** Index 
-- **Position:** Consuming 
-- **Access:** 3rd-Party 
+- **Type:** Index
+- **Position:** Consumer
+- **Access:** 3rd-Party
 
-## Tags:
+## Tags
 
- - API
+- Computer Vision
+- Food
+- Image Recognition
+- Nutrition
+- Semantic Tagging
 
 ## Timestamps
 
-- **Created:** 2025-03-01 
-- **Modified:** 2026-03-16 
+- **Created:** 2025-03-01
+- **Modified:** 2026-04-28
 
 ## APIs
 
-### LogMeal
-Food detection based on images. Semantic tagging including food group, dish and ingredients recognition, as well as nutritional information analysis. 
+### LogMeal Food Recognition API
+The LogMeal API is a RESTful service that recognizes foods from images, returns ingredient lists, computes nutritional information and tracks user intake history.
 
-**Human URL:** [ https://logmeal.com/api/]( https://logmeal.com/api/)
+**Human URL:** [https://logmeal.com/api/](https://logmeal.com/api/)
 
+**Base URL:** `https://api.logmeal.com`
 
-#### Tags:
+#### Tags
 
- - API
+- Computer Vision
+- Food
+- Image Recognition
+- Nutrition
 
 #### Properties
 
-- [Documentation]( https://logmeal.com/api/)
+- [Documentation](https://docs.logmeal.com)
+- [SignUp](https://logmeal.com/api/)
+- [OpenAPI](openapi/logmeal-food-recognition-api-openapi.yml)
+
+## Common Properties
+
+- [Website](https://logmeal.com)
+- [Documentation](https://docs.logmeal.com)
+- [Portal](https://logmeal.com/api/)
 
 ## Maintainers
 
