@@ -1,0 +1,85 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: LogMeal Food Recognition API — History
+  description: 'LogMeal Food Recognition API — History. 1 operations. Lead operation: List user food intakes. Self-contained
+    Naftiko capability covering one Logmeal business surface.'
+  tags:
+  - Logmeal
+  - History
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    LOGMEAL_API_KEY: LOGMEAL_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: food-recognition-history
+    baseUri: https://api.logmeal.com
+    description: LogMeal Food Recognition API — History business capability. Self-contained, no shared references.
+    resources:
+    - name: v2-history-getIntakesList
+      path: /v2/history/getIntakesList
+      operations:
+      - name: getintakeslist
+        method: GET
+        description: List user food intakes
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: startDate
+          in: query
+          type: string
+          description: Start of the time window (ISO 8601 date).
+        - name: endDate
+          in: query
+          type: string
+          description: End of the time window (ISO 8601 date).
+    authentication:
+      type: bearer
+      token: '{{env.LOGMEAL_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: food-recognition-history-rest
+    port: 8080
+    description: REST adapter for LogMeal Food Recognition API — History. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/v2/history/getintakeslist
+      name: v2-history-getintakeslist
+      description: REST surface for v2-history-getIntakesList.
+      operations:
+      - method: GET
+        name: getintakeslist
+        description: List user food intakes
+        call: food-recognition-history.getintakeslist
+        with:
+          startDate: rest.startDate
+          endDate: rest.endDate
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: food-recognition-history-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for LogMeal Food Recognition API — History. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-user-food-intakes
+      description: List user food intakes
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: food-recognition-history.getintakeslist
+      with:
+        startDate: tools.startDate
+        endDate: tools.endDate
+      outputParameters:
+      - type: object
+        mapping: $.

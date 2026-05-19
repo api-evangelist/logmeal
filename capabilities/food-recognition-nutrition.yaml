@@ -1,0 +1,122 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: LogMeal Food Recognition API — Nutrition
+  description: 'LogMeal Food Recognition API — Nutrition. 2 operations. Lead operation: Retrieve ingredients for a confirmed
+    intake. Self-contained Naftiko capability covering one Logmeal business surface.'
+  tags:
+  - Logmeal
+  - Nutrition
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    LOGMEAL_API_KEY: LOGMEAL_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: food-recognition-nutrition
+    baseUri: https://api.logmeal.com
+    description: LogMeal Food Recognition API — Nutrition business capability. Self-contained, no shared references.
+    resources:
+    - name: v2-nutrition-recipe-ingredients
+      path: /v2/nutrition/recipe/ingredients
+      operations:
+      - name: recipeingredients
+        method: POST
+        description: Retrieve ingredients for a confirmed intake
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v2-nutrition-recipe-nutritionalInfo
+      path: /v2/nutrition/recipe/nutritionalInfo
+      operations:
+      - name: recipenutritionalinfo
+        method: POST
+        description: Retrieve nutritional information for a confirmed intake
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.LOGMEAL_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: food-recognition-nutrition-rest
+    port: 8080
+    description: REST adapter for LogMeal Food Recognition API — Nutrition. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/v2/nutrition/recipe/ingredients
+      name: v2-nutrition-recipe-ingredients
+      description: REST surface for v2-nutrition-recipe-ingredients.
+      operations:
+      - method: POST
+        name: recipeingredients
+        description: Retrieve ingredients for a confirmed intake
+        call: food-recognition-nutrition.recipeingredients
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/nutrition/recipe/nutritionalinfo
+      name: v2-nutrition-recipe-nutritionalinfo
+      description: REST surface for v2-nutrition-recipe-nutritionalInfo.
+      operations:
+      - method: POST
+        name: recipenutritionalinfo
+        description: Retrieve nutritional information for a confirmed intake
+        call: food-recognition-nutrition.recipenutritionalinfo
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: food-recognition-nutrition-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for LogMeal Food Recognition API — Nutrition. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: retrieve-ingredients-confirmed-intake
+      description: Retrieve ingredients for a confirmed intake
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: food-recognition-nutrition.recipeingredients
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-nutritional-information-confirmed-intake
+      description: Retrieve nutritional information for a confirmed intake
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: food-recognition-nutrition.recipenutritionalinfo
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
