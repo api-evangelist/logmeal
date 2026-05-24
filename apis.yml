@@ -51,6 +51,8 @@ common:
   url: https://docs.logmeal.com
 - type: Portal
   url: https://logmeal.com/api/
+- type: LLMsTxt
+  url: https://docs.logmeal.com/llms.txt
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
