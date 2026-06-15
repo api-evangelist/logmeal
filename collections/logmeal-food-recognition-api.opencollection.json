@@ -1,0 +1,121 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "LogMeal Food Recognition API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Image Recognition",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Segment and recognize foods in an image",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.logmeal.com/v2/image/segmentation/complete",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "image",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "language",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Detects multiple food items in an image, recognizes each item, and logs a user intake in a single request."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Nutrition",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve ingredients for a confirmed intake",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.logmeal.com/v2/nutrition/recipe/ingredients",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns standardized ingredient lists and quantities for a confirmed food intake."
+        },
+        {
+          "info": {
+            "name": "Retrieve nutritional information for a confirmed intake",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.logmeal.com/v2/nutrition/recipe/nutritionalInfo",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Extracts macro and micronutrient data, including 35+ nutritional indicators such as energy, carbohydrates, protein, and fats."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "History",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List user food intakes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.logmeal.com/v2/history/getIntakesList",
+            "params": [
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "Start of the time window (ISO 8601 date)."
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "End of the time window (ISO 8601 date)."
+              }
+            ]
+          },
+          "docs": "Returns a list of intakes logged for the authenticated user within the specified time period."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

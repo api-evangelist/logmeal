@@ -1,0 +1,733 @@
+{
+  "item": [
+    {
+      "id": "ca3ecac0-24dd-4945-ba04-98e5727137e1",
+      "name": "Image Recognition",
+      "description": {
+        "content": "Detect food items in user-submitted images.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "dd33ff10-507a-41b4-bb1a-c92646e95d63",
+          "name": "Segment and recognize foods in an image",
+          "request": {
+            "name": "Segment and recognize foods in an image",
+            "description": {
+              "content": "Detects multiple food items in an image, recognizes each item, and logs a user intake in a single request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "image",
+                "segmentation",
+                "complete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "image",
+                  "type": "file",
+                  "description": "(Required) Image file containing one or more food items."
+                },
+                {
+                  "key": "language",
+                  "value": "eng",
+                  "type": "text",
+                  "description": "ISO language code for returned labels."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3a4ae643-a2de-42a2-a879-a7a90a4e5b4f",
+              "name": "Recognition results with detected food items.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "image",
+                    "segmentation",
+                    "complete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) Image file containing one or more food items.",
+                        "type": "text/plain"
+                      },
+                      "key": "image",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "ISO language code for returned labels.",
+                        "type": "text/plain"
+                      },
+                      "key": "language",
+                      "value": "eng",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"imageId\": 5848,\n  \"segmentation_results\": [\n    {\n      \"recognition_results\": [\n        {\n          \"id\": 3689,\n          \"name\": \"string\",\n          \"prob\": 4527.408693847371\n        },\n        {\n          \"id\": 7505,\n          \"name\": \"string\",\n          \"prob\": 4483.512021004257\n        }\n      ],\n      \"foodFamily\": [\n        {\n          \"id\": 8579,\n          \"name\": \"string\",\n          \"prob\": 5490.267792250606\n        },\n        {\n          \"id\": 1972,\n          \"name\": \"string\",\n          \"prob\": 1528.9898050625773\n        }\n      ]\n    },\n    {\n      \"recognition_results\": [\n        {\n          \"id\": 6503,\n          \"name\": \"string\",\n          \"prob\": 2799.1133465984776\n        },\n        {\n          \"id\": 9379,\n          \"name\": \"string\",\n          \"prob\": 9080.012416809977\n        }\n      ],\n      \"foodFamily\": [\n        {\n          \"id\": 4892,\n          \"name\": \"string\",\n          \"prob\": 1675.6893959363194\n        },\n        {\n          \"id\": 4562,\n          \"name\": \"string\",\n          \"prob\": 6457.331596268275\n        }\n      ]\n    }\n  ],\n  \"foodType\": [\n    {\n      \"id\": 2397,\n      \"name\": \"string\",\n      \"prob\": 1139.7072081031356\n    },\n    {\n      \"id\": 2147,\n      \"name\": \"string\",\n      \"prob\": 2481.440713450912\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f5db3d72-3da7-4504-8e90-df49b2010190",
+              "name": "Missing or invalid access token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "image",
+                    "segmentation",
+                    "complete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) Image file containing one or more food items.",
+                        "type": "text/plain"
+                      },
+                      "key": "image",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "ISO language code for returned labels.",
+                        "type": "text/plain"
+                      },
+                      "key": "language",
+                      "value": "eng",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": 2025\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "3304cb5c-dc55-4963-9fc0-762f67a1c4e3",
+      "name": "Nutrition",
+      "description": {
+        "content": "Retrieve ingredients and nutritional information for confirmed intakes.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "611b1328-d2f2-45b4-bff2-7c6498c0dbd2",
+          "name": "Retrieve ingredients for a confirmed intake",
+          "request": {
+            "name": "Retrieve ingredients for a confirmed intake",
+            "description": {
+              "content": "Returns standardized ingredient lists and quantities for a confirmed food intake.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "nutrition",
+                "recipe",
+                "ingredients"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"imageId\": \"<integer>\",\n  \"confirmedClass\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "92066d42-9db4-410b-b122-fbdd8a87d24d",
+              "name": "Ingredient list for the confirmed intake.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "nutrition",
+                    "recipe",
+                    "ingredients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"imageId\": \"<integer>\",\n  \"confirmedClass\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"foodName\": [\n    \"string\",\n    \"string\"\n  ],\n  \"ingredients\": [\n    {\n      \"name\": \"string\",\n      \"quantity\": 4212.962865767552,\n      \"unit\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"quantity\": 2627.988813209128,\n      \"unit\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "83ff5bd5-e3ad-4355-8491-f9eeee357a23",
+              "name": "Missing or invalid access token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "nutrition",
+                    "recipe",
+                    "ingredients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"imageId\": \"<integer>\",\n  \"confirmedClass\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": 2025\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b2ace3da-85a7-48eb-bfa7-41875ca10cec",
+          "name": "Retrieve nutritional information for a confirmed intake",
+          "request": {
+            "name": "Retrieve nutritional information for a confirmed intake",
+            "description": {
+              "content": "Extracts macro and micronutrient data, including 35+ nutritional indicators such as energy, carbohydrates, protein, and fats.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "nutrition",
+                "recipe",
+                "nutritionalInfo"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"imageId\": \"<integer>\",\n  \"confirmedClass\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "512074db-aac8-4a0a-bd6e-e50d1d5a25f8",
+              "name": "Nutritional information for the intake.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "nutrition",
+                    "recipe",
+                    "nutritionalInfo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"imageId\": \"<integer>\",\n  \"confirmedClass\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totalNutrients\": {\n    \"key_0\": {\n      \"label\": \"string\",\n      \"quantity\": 9177.181235567055,\n      \"unit\": \"string\"\n    },\n    \"key_1\": {\n      \"label\": \"string\",\n      \"quantity\": 5206.2032631183365,\n      \"unit\": \"string\"\n    },\n    \"key_2\": {\n      \"label\": \"string\",\n      \"quantity\": 8464.63070251957,\n      \"unit\": \"string\"\n    }\n  },\n  \"totalDaily\": {\n    \"key_0\": {},\n    \"key_1\": {}\n  },\n  \"calories\": 6868.675196273357\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1c091f6c-1534-41de-bc8c-f789c32c4714",
+              "name": "Missing or invalid access token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "nutrition",
+                    "recipe",
+                    "nutritionalInfo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"imageId\": \"<integer>\",\n  \"confirmedClass\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": 2025\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "f138c60f-c414-4886-8114-7c48cfcf5023",
+      "name": "History",
+      "description": {
+        "content": "Retrieve a user's logged food intakes over time.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e7ba37f6-274c-4424-a02a-f9979dac32b1",
+          "name": "List user food intakes",
+          "request": {
+            "name": "List user food intakes",
+            "description": {
+              "content": "Returns a list of intakes logged for the authenticated user within the specified time period.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "history",
+                "getIntakesList"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<date>",
+                  "description": "Start of the time window (ISO 8601 date)."
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<date>",
+                  "description": "End of the time window (ISO 8601 date)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8bb86974-4b0a-4352-9c3a-1a4fb24cde5a",
+              "name": "List of intakes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "history",
+                    "getIntakesList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"intakes\": [\n    {\n      \"imageId\": 1064,\n      \"date\": \"2016-12-13T23:21:47.572Z\",\n      \"foodName\": [\n        \"string\",\n        \"string\"\n      ],\n      \"imageUrl\": \"https://zxCLmtJjblHRPeftMnIsoJtkITIQe.uuYHWylvdy9.+C2,d5KSGl60QQ\"\n    },\n    {\n      \"imageId\": 484,\n      \"date\": \"1972-05-11T13:30:44.762Z\",\n      \"foodName\": [\n        \"string\",\n        \"string\"\n      ],\n      \"imageUrl\": \"http://kYdBIzcjaybf.ixcvUyg524V,o,qqDaGwz0txEVTwugBhFkd2D,rchONxOD4pTw7UgvtmrHXXK3KE\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "04a97ea2-50bf-43b5-8cb1-8145405636a8",
+              "name": "Missing or invalid access token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "history",
+                    "getIntakesList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": 2025\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.logmeal.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a5b8cf77-67b5-455a-9907-b7ce4f201c7f",
+    "name": "LogMeal Food Recognition API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The LogMeal API is a RESTful service that recognizes foods, drinks, vegetables, fruits, and prepared dishes from images, returns ingredient lists with quantities, computes nutritional information, and tracks user intakes over time. Authentication is by user token in the Authorization header. Images are submitted as multipart/form-data or as a base64-encoded string in JSON.\n\nContact Support:\n Name: LogMeal",
+      "type": "text/plain"
+    }
+  }
+}
