@@ -39,6 +39,10 @@ apis:
       - type: OpenAPI
         url: openapi/logmeal-food-recognition-api-openapi.yml
 common:
+  - type: DomainSecurity
+    url: security/logmeal-domain-security.yml
+  - type: Authentication
+    url: authentication/logmeal-authentication.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/logmeal
   - type: Website
@@ -49,6 +53,8 @@ common:
     url: https://logmeal.com/api/
   - type: LlmsText
     url: https://docs.logmeal.com/llms.txt
+  - url: https://blog.logmeal.com/feed/
+    type: Blog
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

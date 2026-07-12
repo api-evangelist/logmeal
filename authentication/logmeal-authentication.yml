@@ -1,0 +1,13 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/logmeal-food-recognition-api-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: bearerToken
+  type: http
+  scheme: bearer
+  description: User access token issued by LogMeal.
+  sources:
+  - openapi/logmeal-food-recognition-api-openapi.yml
