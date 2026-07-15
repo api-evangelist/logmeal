@@ -39,6 +39,8 @@ apis:
       - type: OpenAPI
         url: openapi/logmeal-food-recognition-api-openapi.yml
 common:
+  - type: AgenticAccess
+    url: agentic-access/logmeal-agentic-access.yml
   - type: DomainSecurity
     url: security/logmeal-domain-security.yml
   - type: Authentication

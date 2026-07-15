@@ -1,0 +1,74 @@
+generated: '2026-07-15'
+method: generated
+source: openapi/logmeal-food-recognition-api-openapi.yml
+description: Recommended x-agentic-access execution contracts, classified heuristically from
+  the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
+  audience per deployment. See research/curity/agentic-governance/.
+summary:
+  operations: 4
+  by_action_class:
+    acting: 3
+    connected: 1
+  by_consequence:
+    write: 3
+    read: 1
+  human_in_the_loop_required: 0
+operations:
+- path: /v2/image/segmentation/complete
+  method: post
+  operationId: segmentationComplete
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/nutrition/recipe/ingredients
+  method: post
+  operationId: recipeIngredients
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/nutrition/recipe/nutritionalInfo
+  method: post
+  operationId: recipeNutritionalInfo
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/history/getIntakesList
+  method: get
+  operationId: getIntakesList
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
