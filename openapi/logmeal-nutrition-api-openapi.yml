@@ -1,0 +1,144 @@
+openapi: 3.1.0
+info:
+  title: LogMeal Food Recognition History Nutrition API
+  description: The LogMeal API is a RESTful service that recognizes foods, drinks, vegetables, fruits, and prepared dishes from images, returns ingredient lists with quantities, computes nutritional information, and tracks user intakes over time. Authentication is by user token in the Authorization header. Images are submitted as multipart/form-data or as a base64-encoded string in JSON.
+  version: '2.0'
+  contact:
+    name: LogMeal
+    url: https://logmeal.com/api/
+servers:
+- url: https://api.logmeal.com
+  description: LogMeal production API
+security:
+- bearerToken: []
+tags:
+- name: Nutrition
+  description: Retrieve ingredients and nutritional information for confirmed intakes.
+paths:
+  /v2/nutrition/recipe/ingredients:
+    post:
+      tags:
+      - Nutrition
+      summary: Retrieve ingredients for a confirmed intake
+      description: Returns standardized ingredient lists and quantities for a confirmed food intake.
+      operationId: recipeIngredients
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - imageId
+              - confirmedClass
+              properties:
+                imageId:
+                  type: integer
+                  description: Identifier returned by a previous recognition request.
+                confirmedClass:
+                  type: integer
+                  description: The class id confirmed by the user as the correct food.
+      responses:
+        '200':
+          description: Ingredient list for the confirmed intake.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IngredientsResult'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /v2/nutrition/recipe/nutritionalInfo:
+    post:
+      tags:
+      - Nutrition
+      summary: Retrieve nutritional information for a confirmed intake
+      description: Extracts macro and micronutrient data, including 35+ nutritional indicators such as energy, carbohydrates, protein, and fats.
+      operationId: recipeNutritionalInfo
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - imageId
+              properties:
+                imageId:
+                  type: integer
+                  description: Identifier returned by a previous recognition request.
+                confirmedClass:
+                  type: integer
+                  description: The class id confirmed as the correct food.
+      responses:
+        '200':
+          description: Nutritional information for the intake.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NutritionalInfo'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    IngredientsResult:
+      type: object
+      properties:
+        foodName:
+          type: array
+          items:
+            type: string
+        ingredients:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              quantity:
+                type: number
+                format: float
+              unit:
+                type: string
+    NutritionalInfo:
+      type: object
+      properties:
+        nutritional_info_per_item:
+          type: array
+          items:
+            type: object
+        totalNutrients:
+          type: object
+          additionalProperties:
+            type: object
+            properties:
+              label:
+                type: string
+              quantity:
+                type: number
+              unit:
+                type: string
+        totalDaily:
+          type: object
+          additionalProperties:
+            type: object
+        calories:
+          type: number
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        code:
+          type: integer
+  responses:
+    Unauthorized:
+      description: Missing or invalid access token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    bearerToken:
+      type: http
+      scheme: bearer
+      description: User access token issued by LogMeal.

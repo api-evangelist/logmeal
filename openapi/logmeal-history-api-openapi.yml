@@ -1,0 +1,87 @@
+openapi: 3.1.0
+info:
+  title: LogMeal Food Recognition History API
+  description: The LogMeal API is a RESTful service that recognizes foods, drinks, vegetables, fruits, and prepared dishes from images, returns ingredient lists with quantities, computes nutritional information, and tracks user intakes over time. Authentication is by user token in the Authorization header. Images are submitted as multipart/form-data or as a base64-encoded string in JSON.
+  version: '2.0'
+  contact:
+    name: LogMeal
+    url: https://logmeal.com/api/
+servers:
+- url: https://api.logmeal.com
+  description: LogMeal production API
+security:
+- bearerToken: []
+tags:
+- name: History
+  description: Retrieve a user's logged food intakes over time.
+paths:
+  /v2/history/getIntakesList:
+    get:
+      tags:
+      - History
+      summary: List user food intakes
+      description: Returns a list of intakes logged for the authenticated user within the specified time period.
+      operationId: getIntakesList
+      parameters:
+      - name: startDate
+        in: query
+        description: Start of the time window (ISO 8601 date).
+        schema:
+          type: string
+          format: date
+      - name: endDate
+        in: query
+        description: End of the time window (ISO 8601 date).
+        schema:
+          type: string
+          format: date
+      responses:
+        '200':
+          description: List of intakes.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IntakesList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    IntakesList:
+      type: object
+      properties:
+        intakes:
+          type: array
+          items:
+            type: object
+            properties:
+              imageId:
+                type: integer
+              date:
+                type: string
+                format: date-time
+              foodName:
+                type: array
+                items:
+                  type: string
+              imageUrl:
+                type: string
+                format: uri
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        code:
+          type: integer
+  responses:
+    Unauthorized:
+      description: Missing or invalid access token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    bearerToken:
+      type: http
+      scheme: bearer
+      description: User access token issued by LogMeal.
