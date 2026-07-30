@@ -5,9 +5,22 @@ description: >-
   images. The platform offers semantic tagging including food group, dish and ingredients recognition, as well as
   nutritional information analysis with 35+ nutritional indicators and user intake history tracking.
 type: Index
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 position: Consumer
 access: 3rd-Party
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/logmeal.png
 tags:
   - Computer Vision
   - Food
@@ -19,25 +32,48 @@ modified: '2026-05-19'
 url: https://raw.githubusercontent.com/api-evangelist/logmeal/refs/heads/main/apis.yml
 specificationVersion: '0.19'
 apis:
-  - aid: logmeal:food-recognition-api
-    name: LogMeal Food Recognition API
-    description: >-
-      The LogMeal API is a RESTful service that recognizes foods from images, returns ingredient lists, computes
-      nutritional information and tracks user intake history.
-    humanURL: https://logmeal.com/api/
-    baseURL: https://api.logmeal.com
-    tags:
-      - Computer Vision
-      - Food
-      - Image Recognition
-      - Nutrition
-    properties:
-      - type: Documentation
-        url: https://docs.logmeal.com
-      - type: Signup
-        url: https://logmeal.com/api/
-      - type: OpenAPI
-        url: openapi/logmeal-food-recognition-api-openapi.yml
+- aid: logmeal:logmeal-history-api
+  name: LogMeal History API
+  description: Retrieve a user's logged food intakes over time.
+  humanURL: https://logmeal.com/api/
+  baseURL: https://api.logmeal.com
+  tags:
+  - History
+  properties:
+  - type: OpenAPI
+    url: openapi/logmeal-history-api-openapi.yml
+  - type: Documentation
+    url: https://docs.logmeal.com
+  - type: Signup
+    url: https://logmeal.com/api/
+- aid: logmeal:logmeal-image-recognition-api
+  name: LogMeal Image Recognition API
+  description: Detect food items in user-submitted images.
+  humanURL: https://logmeal.com/api/
+  baseURL: https://api.logmeal.com
+  tags:
+  - Image Recognition
+  properties:
+  - type: OpenAPI
+    url: openapi/logmeal-image-recognition-api-openapi.yml
+  - type: Documentation
+    url: https://docs.logmeal.com
+  - type: Signup
+    url: https://logmeal.com/api/
+- aid: logmeal:logmeal-nutrition-api
+  name: LogMeal Nutrition API
+  description: Retrieve ingredients and nutritional information for confirmed intakes.
+  humanURL: https://logmeal.com/api/
+  baseURL: https://api.logmeal.com
+  tags:
+  - Nutrition
+  properties:
+  - type: OpenAPI
+    url: openapi/logmeal-nutrition-api-openapi.yml
+  - type: Documentation
+    url: https://docs.logmeal.com
+  - type: Signup
+    url: https://logmeal.com/api/
 common:
   - type: AgenticAccess
     url: agentic-access/logmeal-agentic-access.yml
