@@ -1,0 +1,18 @@
+{
+  "provider": "logmeal",
+  "sources": [
+    "logmeal-history-api-openapi.yml",
+    "logmeal-image-recognition-api-openapi.yml",
+    "logmeal-nutrition-api-openapi.yml"
+  ],
+  "outputs": [
+    "logmeal-history-api-openapi.yml",
+    "logmeal-image-recognition-api-openapi.yml",
+    "logmeal-nutrition-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
