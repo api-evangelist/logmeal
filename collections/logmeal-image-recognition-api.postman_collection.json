@@ -1,0 +1,235 @@
+{
+  "item": [
+    {
+      "id": "66862316-e012-4525-b7fb-41c2e7792d7a",
+      "name": "Image Recognition",
+      "description": {
+        "content": "Detect food items in user-submitted images.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b28835bc-b407-4fe5-b157-698547dbac27",
+          "name": "Segment and recognize foods in an image",
+          "request": {
+            "name": "Segment and recognize foods in an image",
+            "description": {
+              "content": "Detects multiple food items in an image, recognizes each item, and logs a user intake in a single request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "image",
+                "segmentation",
+                "complete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "image",
+                  "type": "file",
+                  "description": "(Required) Image file containing one or more food items."
+                },
+                {
+                  "key": "language",
+                  "value": "eng",
+                  "type": "text",
+                  "description": "ISO language code for returned labels."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "10a7f208-6a09-4377-8914-0314b66ebca7",
+              "name": "Recognition results with detected food items.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "image",
+                    "segmentation",
+                    "complete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) Image file containing one or more food items.",
+                        "type": "text/plain"
+                      },
+                      "key": "image",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "ISO language code for returned labels.",
+                        "type": "text/plain"
+                      },
+                      "key": "language",
+                      "value": "eng",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"imageId\": 2931,\n  \"segmentation_results\": [\n    {\n      \"recognition_results\": [\n        {\n          \"id\": 4350,\n          \"name\": \"string\",\n          \"prob\": 4217.795852146182\n        },\n        {\n          \"id\": 8088,\n          \"name\": \"string\",\n          \"prob\": 6547.108996724377\n        }\n      ],\n      \"foodFamily\": [\n        {\n          \"id\": 6508,\n          \"name\": \"string\",\n          \"prob\": 1916.6240394038093\n        },\n        {\n          \"id\": 6168,\n          \"name\": \"string\",\n          \"prob\": 529.3805797854578\n        }\n      ]\n    },\n    {\n      \"recognition_results\": [\n        {\n          \"id\": 3135,\n          \"name\": \"string\",\n          \"prob\": 2343.461493511445\n        },\n        {\n          \"id\": 5232,\n          \"name\": \"string\",\n          \"prob\": 106.05503451037612\n        }\n      ],\n      \"foodFamily\": [\n        {\n          \"id\": 1723,\n          \"name\": \"string\",\n          \"prob\": 9953.312059221533\n        },\n        {\n          \"id\": 8661,\n          \"name\": \"string\",\n          \"prob\": 8172.85959324117\n        }\n      ]\n    }\n  ],\n  \"foodType\": [\n    {\n      \"id\": 1272,\n      \"name\": \"string\",\n      \"prob\": 2676.88186404347\n    },\n    {\n      \"id\": 5492,\n      \"name\": \"string\",\n      \"prob\": 1391.2280671199774\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0e4cee59-7e31-4c61-a9f6-f49ae77c6eca",
+              "name": "Missing or invalid access token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "image",
+                    "segmentation",
+                    "complete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) Image file containing one or more food items.",
+                        "type": "text/plain"
+                      },
+                      "key": "image",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "ISO language code for returned labels.",
+                        "type": "text/plain"
+                      },
+                      "key": "language",
+                      "value": "eng",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": 7979\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.logmeal.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f04181de-1910-4a78-bac8-df999584dbd0",
+    "name": "LogMeal Food Recognition History Image Recognition API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The LogMeal API is a RESTful service that recognizes foods, drinks, vegetables, fruits, and prepared dishes from images, returns ingredient lists with quantities, computes nutritional information, and tracks user intakes over time. Authentication is by user token in the Authorization header. Images are submitted as multipart/form-data or as a base64-encoded string in JSON.\n\nContact Support:\n Name: LogMeal",
+      "type": "text/plain"
+    }
+  }
+}

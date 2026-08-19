@@ -1,0 +1,50 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "LogMeal Food Recognition History Image Recognition API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Image Recognition",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Segment and recognize foods in an image",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.logmeal.com/v2/image/segmentation/complete",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "image",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "language",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Detects multiple food items in an image, recognizes each item, and logs a user intake in a single request."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

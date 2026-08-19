@@ -1,0 +1,359 @@
+{
+  "item": [
+    {
+      "id": "1cb50551-e85b-4d6c-bade-e12e2a015dcc",
+      "name": "Nutrition",
+      "description": {
+        "content": "Retrieve ingredients and nutritional information for confirmed intakes.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0789acd3-e5c7-45d0-aa86-1f5d15fdb852",
+          "name": "Retrieve ingredients for a confirmed intake",
+          "request": {
+            "name": "Retrieve ingredients for a confirmed intake",
+            "description": {
+              "content": "Returns standardized ingredient lists and quantities for a confirmed food intake.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "nutrition",
+                "recipe",
+                "ingredients"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"imageId\": \"<integer>\",\n  \"confirmedClass\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6671bb2b-e7f7-4869-a008-1275eb97e236",
+              "name": "Ingredient list for the confirmed intake.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "nutrition",
+                    "recipe",
+                    "ingredients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"imageId\": \"<integer>\",\n  \"confirmedClass\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"foodName\": [\n    \"string\",\n    \"string\"\n  ],\n  \"ingredients\": [\n    {\n      \"name\": \"string\",\n      \"quantity\": 216.31484326672722,\n      \"unit\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"quantity\": 3003.436611222532,\n      \"unit\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7d7899b6-4cd4-4444-8a02-ff3f39334c4f",
+              "name": "Missing or invalid access token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "nutrition",
+                    "recipe",
+                    "ingredients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"imageId\": \"<integer>\",\n  \"confirmedClass\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": 6244\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a0fc003e-fc29-4fa2-a7dc-2d24fa8bf15f",
+          "name": "Retrieve nutritional information for a confirmed intake",
+          "request": {
+            "name": "Retrieve nutritional information for a confirmed intake",
+            "description": {
+              "content": "Extracts macro and micronutrient data, including 35+ nutritional indicators such as energy, carbohydrates, protein, and fats.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "nutrition",
+                "recipe",
+                "nutritionalInfo"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"imageId\": \"<integer>\",\n  \"confirmedClass\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "86383e01-f536-4b0b-99e5-bb565ba69c87",
+              "name": "Nutritional information for the intake.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "nutrition",
+                    "recipe",
+                    "nutritionalInfo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"imageId\": \"<integer>\",\n  \"confirmedClass\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totalNutrients\": {\n    \"key_0\": {\n      \"label\": \"string\",\n      \"quantity\": 3290.515646116533,\n      \"unit\": \"string\"\n    },\n    \"key_1\": {\n      \"label\": \"string\",\n      \"quantity\": 3484.1192670727714,\n      \"unit\": \"string\"\n    }\n  },\n  \"totalDaily\": {\n    \"key_0\": {},\n    \"key_1\": {}\n  },\n  \"calories\": 2388.9853386444015\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e9b695a5-afc2-4dba-ab23-272616d26d6f",
+              "name": "Missing or invalid access token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "nutrition",
+                    "recipe",
+                    "nutritionalInfo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"imageId\": \"<integer>\",\n  \"confirmedClass\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": 6244\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.logmeal.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "624d4f23-e291-4e01-ae7c-e29a54b1552b",
+    "name": "LogMeal Food Recognition History Nutrition API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The LogMeal API is a RESTful service that recognizes foods, drinks, vegetables, fruits, and prepared dishes from images, returns ingredient lists with quantities, computes nutritional information, and tracks user intakes over time. Authentication is by user token in the Authorization header. Images are submitted as multipart/form-data or as a base64-encoded string in JSON.\n\nContact Support:\n Name: LogMeal",
+      "type": "text/plain"
+    }
+  }
+}

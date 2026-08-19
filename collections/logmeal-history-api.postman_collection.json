@@ -1,0 +1,199 @@
+{
+  "item": [
+    {
+      "id": "b8067794-d05f-47a3-b453-cdf5512dadba",
+      "name": "History",
+      "description": {
+        "content": "Retrieve a user's logged food intakes over time.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "216040a3-1b66-42d5-b3b6-809fc5bf9ee8",
+          "name": "List user food intakes",
+          "request": {
+            "name": "List user food intakes",
+            "description": {
+              "content": "Returns a list of intakes logged for the authenticated user within the specified time period.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "history",
+                "getIntakesList"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<date>",
+                  "description": "Start of the time window (ISO 8601 date)."
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<date>",
+                  "description": "End of the time window (ISO 8601 date)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e0e210d7-eea1-4385-ad03-605bf5a12b02",
+              "name": "List of intakes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "history",
+                    "getIntakesList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"intakes\": [\n    {\n      \"imageId\": 5565,\n      \"date\": \"1962-09-01T09:58:09.445Z\",\n      \"foodName\": [\n        \"string\",\n        \"string\"\n      ],\n      \"imageUrl\": \"https://FdCcWGkgdDNEhoKSRMYDg.hipxlVwNn,MyqWFDGYsmOgssIN7qHTR9.sHQLSA+b4dUl0CDRHJ-a2\"\n    },\n    {\n      \"imageId\": 6644,\n      \"date\": \"1967-12-15T21:55:18.145Z\",\n      \"foodName\": [\n        \"string\",\n        \"string\"\n      ],\n      \"imageUrl\": \"https://GgXzhBSeBSGkpxNnycf.dbkaoZ0ZK3KFzHLNT+\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ea531749-704b-4d74-bde7-19ece3c676b6",
+              "name": "Missing or invalid access token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "history",
+                    "getIntakesList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": 7997\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.logmeal.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c4ca72f2-4a15-4320-9173-96f8bef30ee2",
+    "name": "LogMeal Food Recognition History API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The LogMeal API is a RESTful service that recognizes foods, drinks, vegetables, fruits, and prepared dishes from images, returns ingredient lists with quantities, computes nutritional information, and tracks user intakes over time. Authentication is by user token in the Authorization header. Images are submitted as multipart/form-data or as a base64-encoded string in JSON.\n\nContact Support:\n Name: LogMeal",
+      "type": "text/plain"
+    }
+  }
+}

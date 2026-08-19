@@ -1,0 +1,54 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "LogMeal Food Recognition History Nutrition API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Nutrition",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve ingredients for a confirmed intake",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.logmeal.com/v2/nutrition/recipe/ingredients",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns standardized ingredient lists and quantities for a confirmed food intake."
+        },
+        {
+          "info": {
+            "name": "Retrieve nutritional information for a confirmed intake",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.logmeal.com/v2/nutrition/recipe/nutritionalInfo",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Extracts macro and micronutrient data, including 35+ nutritional indicators such as energy, carbohydrates, protein, and fats."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

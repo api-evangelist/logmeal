@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "LogMeal Food Recognition History API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "History",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List user food intakes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.logmeal.com/v2/history/getIntakesList",
+            "params": [
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "Start of the time window (ISO 8601 date)."
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "End of the time window (ISO 8601 date)."
+              }
+            ]
+          },
+          "docs": "Returns a list of intakes logged for the authenticated user within the specified time period."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
