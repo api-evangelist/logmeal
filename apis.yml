@@ -22,6 +22,12 @@ position: Consumer
 access: 3rd-Party
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/logmeal.png
 tags:
+  - Computer-Vision
+  - Food
+  - Image Recognition
+  - Nutrition
+  - Semantic Tagging
+tags_raw:
   - Computer Vision
   - Food
   - Image Recognition
