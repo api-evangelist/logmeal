@@ -35,7 +35,7 @@ position: Consuming
 access: 3rd-Party
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/logmeal.png
 tags:
-  - Computer-Vision
+  - Computer Vision
   - Food
   - Image Recognition
   - Nutrition
@@ -46,6 +46,7 @@ tags_raw:
   - Image Recognition
   - Nutrition
   - Semantic Tagging
+  - Computer-Vision
 created: '2025-03-01'
 modified: '2026-05-19'
 url: https://raw.githubusercontent.com/api-evangelist/logmeal/refs/heads/main/apis.yml
