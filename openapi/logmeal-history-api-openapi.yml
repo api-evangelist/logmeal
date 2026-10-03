@@ -46,13 +46,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
-        code:
-          type: integer
     IntakesList:
       type: object
       properties:
@@ -73,6 +66,13 @@ components:
               imageUrl:
                 type: string
                 format: uri
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        code:
+          type: integer
   responses:
     Unauthorized:
       description: Missing or invalid access token.

@@ -104,6 +104,13 @@ components:
             type: object
         calories:
           type: number
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        code:
+          type: integer
     IngredientsResult:
       type: object
       properties:
@@ -123,13 +130,6 @@ components:
                 format: float
               unit:
                 type: string
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
-        code:
-          type: integer
   responses:
     Unauthorized:
       description: Missing or invalid access token.
