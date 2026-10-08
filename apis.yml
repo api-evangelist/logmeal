@@ -98,6 +98,12 @@ apis:
   - type: Signup
     url: https://logmeal.com/api/
 common:
+  - type: Plans
+    url: plans/logmeal-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/logmeal-rate-limits.yml
+  - type: FinOps
+    url: finops/logmeal-finops.yml
   - type: AgenticAccess
     url: agentic-access/logmeal-agentic-access.yml
   - type: DomainSecurity
